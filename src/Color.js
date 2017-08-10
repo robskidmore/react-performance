@@ -3,7 +3,6 @@ import React from 'react';
 const Color = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(props.color);
     props.onClick(props.color);
   }
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 class Title extends React.Component {
   state = {
-    title: 'Colors'
+    title: 'React Performance'
   }
 
   updateTitle = (e) => {

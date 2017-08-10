@@ -17,7 +17,9 @@ window.Perf = Perf;
 class App extends React.Component {
   state = {
     colors: _.uniqBy(data, 'color'),
-    index: 'index',
+    index: 'random',
+    split: false,
+    pure: false,
   }
 
   deleteColor = (color) => {
@@ -29,21 +31,43 @@ class App extends React.Component {
     this.setState({index})
   }
 
+  changeSplit = () => {
+    this.setState((prevState) => ({
+      split: !prevState.split
+    }))
+  }
+
+  changePure = () => {
+    this.setState((prevState) => ({
+      pure: !prevState.pure
+    }))
+  }
+
   render () {
     return (
       <div>
-        {/* <ButtonsAndColors
-          changeIndex={this.changeIndex}
-          index={this.state.index}
-          colors={this.state.colors}
-          onClick={this.deleteColor}
-        />
-        <hr /> */}
-        <div className='container'>
-          <Title />
-          <Buttons changeIndex={this.changeIndex} />
-          <Colors index={this.state.index} colors={this.state.colors} onClick={this.deleteColor} />
-        </div>
+        <button onClick={this.changeSplit}>{this.state.split ? 'Split' : 'Monolith'}</button>
+        <button onClick={this.changePure}>{this.state.pure ? 'Pure' : 'Functional'}</button>
+        { this.state.split
+          ?
+            <div className='container'>
+              <Title />
+              <Buttons changeIndex={this.changeIndex} index={this.state.index} />
+              <Colors
+                pure={this.state.pure}
+                index={this.state.index}
+                colors={this.state.colors}
+                onClick={this.deleteColor}
+              />
+            </div>
+          :
+            <ButtonsAndColors
+              changeIndex={this.changeIndex}
+              index={this.state.index}
+              colors={this.state.colors}
+              onClick={this.deleteColor}
+            />
+        }
       </div>
     )
   }

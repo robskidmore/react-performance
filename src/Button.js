@@ -6,7 +6,7 @@ const Button = (props) => {
   }
 
   return (
-    <button type='button' onClick={handleClick}>{props.text}</button>
+    <button className={props.value === props.index ? 'active' : ''} type='button' onClick={handleClick}>{props.text}</button>
   )
 }
 
